@@ -1,0 +1,100 @@
+/* .yabba-dabba-doo {
+  box-shadow: #1d3557 0 0 0 2px inset,
+  #457b9d 10px -10px,
+  #a8dadc 20px -20px,
+  #f1faee 30px -30px,
+  #e63946 40px -40px;
+} */
+
+.yabba-dabba-doo {
+  box-shadow: #03045e 0 0 0 2px inset,
+  #023e8a 10px -10px,
+  #0077b6 20px -20px,
+  #0096c7 30px -30px,
+  #00b4d8 40px -40px;
+}
+
+.center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.js-btn {
+  border-color: #1d3557;
+  border-width: thin;
+  margin-top: 1em;
+}
+
+.padding {
+  padding: 20px;
+}
+
+ul.formatting {
+  list-style-type: none;
+}
+
+body {
+  background: linear-gradient(225deg, #1abc9c, #4d94ff);
+  background-size: 400% 400%;
+  -webkit-animation: AnimationName 30s ease infinite;
+  -moz-animation: AnimationName 30s ease infinite;
+  animation: AnimationName 30s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+  0% {
+    background-position: 0% 90%
+  }
+
+  50% {
+    background-position: 100% 11%
+  }
+
+  100% {
+    background-position: 0% 90%
+  }
+}
+
+@-moz-keyframes AnimationName {
+  0% {
+    background-position: 0% 90%
+  }
+
+  50% {
+    background-position: 100% 11%
+  }
+
+  100% {
+    background-position: 0% 90%
+  }
+}
+
+@keyframes AnimationName {
+  0% {
+    background-position: 0% 90%
+  }
+
+  50% {
+    background-position: 100% 11%
+  }
+
+  100% {
+    background-position: 0% 90%
+  }
+}
+
+a {
+  color: #FFF;
+}
+
+a:hover {
+  color: black;
+  text-decoration: none;
+}
+
+h1,li {
+  color: white;
+}
