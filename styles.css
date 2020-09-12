@@ -37,7 +37,7 @@ ul.formatting {
 
 body {
   background: linear-gradient(227deg, #1abc9c, #4d94ff);
-  background-size: auto;
+  background-size: 10000% 10000%;
 
   -webkit-animation: jamesGradient 30s ease infinite;
   -moz-animation: jamesGradient 30s ease infinite;
