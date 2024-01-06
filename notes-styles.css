@@ -1,0 +1,17 @@
+nav {
+    background-color: white;
+}
+
+main {
+    padding: 70px 0;
+    font-family: 'Roboto Mono',monospace; 
+}
+
+main ul li a {
+    color: orangered; 
+}
+
+main ul li a:hover {
+    color: rgb(179, 0, 255); 
+    text-decoration: underline wavy; 
+}
