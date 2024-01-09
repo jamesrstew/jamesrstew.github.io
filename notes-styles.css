@@ -15,3 +15,7 @@ main ul li a:hover {
     color: rgb(179, 0, 255); 
     text-decoration: underline wavy; 
 }
+
+.img-max {
+    width: 100px;
+}
