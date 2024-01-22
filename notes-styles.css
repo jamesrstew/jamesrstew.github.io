@@ -37,15 +37,10 @@ strong {
 
 @media (min-width: 768px) {
     .video-max-width {
-        max-width: 500px;
+        max-width: 300px;
     }
 }
 
-.formula-max-width {
-    max-width: 500px; 
-    height: auto; 
-    padding-bottom: 50px; 
-    display: block; 
-    margin-left: auto;
-    margin-right: auto;
+div.spacer {
+    padding-bottom: 50px;
 }
