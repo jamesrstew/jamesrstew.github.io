@@ -25,12 +25,27 @@ strong {
     width: 50%;
   }
 
-  .video-max-width {
-    max-width: 500px;
+.video-container {
+    /* background-color: #f8f9fa; */
+    border-radius: 0.25rem; 
+    padding: 1rem; 
 }
 
-@media (max-width: 768px) {
+.video-max-width {
+    max-width: 100%;
+}
+
+@media (min-width: 768px) {
     .video-max-width {
-        max-width: 100%;
+        max-width: 500px;
     }
+}
+
+.formula-max-width {
+    max-width: 500px; 
+    height: auto; 
+    padding-bottom: 50px; 
+    display: block; 
+    margin-left: auto;
+    margin-right: auto;
 }
