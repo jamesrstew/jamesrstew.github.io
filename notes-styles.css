@@ -16,6 +16,21 @@ main ul li a:hover {
     text-decoration: underline wavy; 
 }
 
-.img-max {
-    width: 100px;
+strong {
+    font-weight: 700; /* This is the font-weight for bold */
+  }
+
+  .center {
+    margin: auto;
+    width: 50%;
+  }
+
+  .video-max-width {
+    max-width: 500px;
+}
+
+@media (max-width: 768px) {
+    .video-max-width {
+        max-width: 100%;
+    }
 }
