@@ -44,3 +44,7 @@ strong {
 div.spacer {
     padding-bottom: 50px;
 }
+
+h1,h2 {
+    font-weight: 700;
+}
