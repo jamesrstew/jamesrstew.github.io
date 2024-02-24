@@ -7,11 +7,11 @@ main {
     font-family: 'Roboto Mono',monospace; 
 }
 
-main ul li a {
+a {
     color: orangered; 
 }
 
-main ul li a:hover {
+a:hover {
     color: rgb(179, 0, 255); 
     text-decoration: underline wavy; 
 }
@@ -48,3 +48,18 @@ div.spacer {
 h1,h2 {
     font-weight: 700;
 }
+
+blockquote {
+    font-style:italic;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 50px;
+    padding-left: 15px;
+    border-left: 5px solid #000;
+    display:inline-flex;
+  } 
+  
+  blockquote span {
+    margin-top:-10px;
+    margin-bottom:-10px;
+  }
