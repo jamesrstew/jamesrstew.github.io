@@ -71,3 +71,13 @@ blockquote {
   #pancakes {
     margin-top: 100px;
 }
+
+::selection {
+    background-color: black;
+    color: white;
+}
+
+::-moz-selection {
+    background-color: black;
+    color: white;
+}
