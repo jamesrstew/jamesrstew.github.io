@@ -2,6 +2,23 @@ nav {
     background-color: white;
 }
 
+.navbar-brand {
+    padding-left: 1rem; /* Add left padding to logo */
+}
+
+.navbar-toggler {
+    margin-right: 1rem;
+}
+
+@media (max-width: 768px) {
+    .navbar-toggler {
+        margin-right: 1rem;
+    }
+    .navbar-nav .nav-link {
+        padding-left: 1.5rem;
+    }
+}
+
 main {
     padding: 70px 0;
     font-family: 'Roboto Mono',monospace; 
