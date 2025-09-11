@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://jamesstew.art/sitemap.xml
+
+# Common crawl delays for good citizenship
+Crawl-delay: 1

@@ -1,0 +1,24 @@
+# James Stewart - Product Manager
+
+## About
+This is the personal website and blog of James Stewart, a product manager with expertise in fintech, technology, and product development. The site contains personal essays, professional insights, and thoughts on life, work, and building products.
+
+## Content Overview
+- Personal homepage and professional profile
+- Blog posts on product management, technology, and personal reflections
+- Topics include: low/no-tech solutions, new product development, parenting, self-inquiry, cooking, and professional advice
+
+## Key Pages
+- Homepage: Personal and professional introduction
+- Notes: Collection of blog posts and essays on various topics
+
+## Personal Projects & Links
+- Toastery Roastery: Coffee subscription service (https://toasteryroastery.com/)
+- Birthday Bread: Goodwill project of sending bread to loved ones (http://birthdaybread.com)
+- James Stewart Club: Tongue-in-cheek club for people who share the name James Stewart (http://james-stewart.club/)
+- LinkedIn: https://www.linkedin.com/in/james-r-stewart/
+- GitHub: https://github.com/jamesrstew
+- Website: https://jamesstew.art
+
+## Usage Guidelines
+This content represents personal views and experiences. Professional content is shared for educational purposes. Please respect the personal nature of family-related posts.
