@@ -16,7 +16,7 @@
     <meta name="description" content="Self-Inquiry | James Stewart">
     <meta property="og:title" content="Self-Inquiry | James Stewart" />
     <meta name="twitter:title" content="Self-Inquiry | James Stewart">
-    <meta property="og:url" content="https://jamesstew.art/notes/self-inquiry.html" />
+    <meta property="og:url" content="https://jamesstew.art/notes/self-inquiry" />
     <meta property="og:description"
         content="Practices, prompts, and resources for radical self-inquiry: journaling, fear-setting, books, and talks." />
     <meta name="twitter:description"
@@ -31,7 +31,7 @@
     <link href="../favicon.png" rel="shortcut icon" type="image/x-icon" />
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://jamesstew.art/notes/self-inquiry.html" />
+    <link rel="canonical" href="https://jamesstew.art/notes/self-inquiry" />
 
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -55,7 +55,7 @@
       "dateModified": "2025-09-08",
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "https://jamesstew.art/notes/self-inquiry.html"
+        "@id": "https://jamesstew.art/notes/self-inquiry"
       }
     }
     </script>
@@ -74,7 +74,7 @@
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-light fixed-top white-bg">
-        <a href="../index.html" class="navbar-brand">
+        <a href="../" class="navbar-brand">
             <img src="../favicon.png" width="30" height="30" class="d-inline-block align-top" alt="Home">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -84,7 +84,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href="../notes.html">Notes</a>
+                    <a class="nav-link" href="../notes/">Notes</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="https://toasteryroastery.com/" target="_blank">Coffee</a>
@@ -112,7 +112,7 @@
                     <!-- Breadcrumb navigation -->
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="../notes.html">Notes</a></li>
+                            <li class="breadcrumb-item"><a href="../notes/">Notes</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Self Inquiry</li>
                         </ol>
                     </nav>

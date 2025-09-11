@@ -15,7 +15,7 @@
     <meta name="description" content="Advice for Aspiring PMs | James Stewart">
     <meta property="og:title" content="Advice for Aspiring PMs | James Stewart" />
     <meta name="twitter:title" content="Advice for Aspiring PMs | James Stewart">
-    <meta property="og:url" content="https://jamesstew.art/notes/advice-for-aspiring-pms.html" />
+    <meta property="og:url" content="https://jamesstew.art/notes/advice-for-aspiring-pms" />
     <meta property="og:description" content="Quick advice if you want to break into product management." />
     <meta name="twitter:description" content="Quick advice if you want to break into product management.">
     <meta property="og:type" content="website" />
@@ -28,7 +28,7 @@
     <link href="../favicon.png" rel="shortcut icon" type="image/x-icon" />
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://jamesstew.art/notes/advice-for-aspiring-pms.html" />
+    <link rel="canonical" href="https://jamesstew.art/notes/advice-for-aspiring-pms" />
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TMJZV3TRXS"></script>
@@ -44,7 +44,7 @@
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-light fixed-top white-bg">
-        <a href="../index.html" class="navbar-brand">
+        <a href="../" class="navbar-brand">
             <img src="../favicon.png" width="30" height="30" class="d-inline-block align-top" alt="Home">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -54,7 +54,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href="../notes.html">Notes</a>
+                    <a class="nav-link" href="../notes/">Notes</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="https://toasteryroastery.com/" target="_blank">Coffee</a>
@@ -82,7 +82,7 @@
                     <!-- Breadcrumb navigation -->
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="../notes.html">Notes</a></li>
+                            <li class="breadcrumb-item"><a href="../notes/">Notes</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Advice for Aspiring PMs</li>
                         </ol>
                     </nav>
