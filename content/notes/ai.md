@@ -28,7 +28,7 @@ When ChatGPT arrived in the fall of ‘22, it immediately captivated the masses,
 
 Forget the fluff about "exciting use cases" and "potential”. There are real-world applications of AI in fintech today. Some examples:
 
-- [Financial analysis](https://www.quillai.com/)
+- [Financial analysis](https://web.archive.org/web/20240116105252/https://www.quillai.com/)
 
 - [Quantitative trading](https://www.bloomberg.com/news/articles/2023-07-03/bridgewater-s-greg-jensen-explains-how-the-world-s-biggest-hedge-fund-is-investing-in-ai)
 
