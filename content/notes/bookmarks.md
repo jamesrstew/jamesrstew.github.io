@@ -1,19 +1,19 @@
 ---
-title: Work I Admire
+title: Bookmarks
 date: 2026-10-26
-description: Essays, talks, and one acceptance speech I keep coming back to.
+description: Influential works I've bookmarked and come back to often.
 draft: true
 ---
 
-Some work I keep coming back to. Essays, talks, and one acceptance speech. Each one changed how I think about doing my own work. (The more inward stuff lives in [Self Inquiry](/notes/self-inquiry/).)
+Influential works I've bookmarked and come back to often.
 
 ## Personal Renewal ([John W. Gardner](https://jamesclear.com/great-speeches/personal-renewal-by-john-w-gardner)) {#personal-renewal}
 
-Gardner gave this talk to a room of McKinsey consultants in 1990, when he was in his late seventies. It's about how people go to seed. They stop learning, get comfortable, and quietly stop growing somewhere in the middle of their careers. His cure is to stay curious and keep taking risks, at any age. The best line in it: "Everyone wants to be interesting, but the vitalizing thing is to be interested."
+Gardner gave this talk to a room of McKinsey consultants in 1990, when he was in his late seventies. It's about how people stop growing. Somewhere in the middle of their careers, they stop learning, get comfortable, and coast. His cure is to stay curious and keep taking risks, at any age. The line I will always remember: "Everyone wants to be interesting, but the vitalizing thing is to be interested."
 
 ## Taste ([Ira Glass](https://www.youtube.com/watch?v=91FQKciKfHI)) {#taste}
 
-Ira Glass's two-minute talk is the best thing I know about being a beginner. You get into creative work because you have good taste. For the first few years, your work isn't as good as your taste, and you can tell. Most people quit there. The only way through is volume. Make a lot of work, on deadlines, until it catches up to your taste. ([More on it here.](https://jamesclear.com/ira-glass-failure))
+Ira Glass's two-minute talk is the best thing I know about being a beginner. You get into creative work because you have good taste. For the first few years, your work isn't as good as your taste, and you can tell. Most people quit there. The only way through is volume. Make a lot of work, on deadlines, until it catches up to your taste. I wish I'd seen this earlier in my career. It would have helped me frame those first years, and it would have made me more confident. ([More on it here.](https://jamesclear.com/ira-glass-failure))
 
 ## Systems vs. goals ([Scott Adams](https://fs.blog/scott-adams-fail-at-everything/)) {#systems-vs-goals}
 
