@@ -123,7 +123,7 @@ article :is(h2, h3):target {
   margin-inline: -.5ch; padding-inline: .5ch;
 }
 article > footer { margin-top: 3rem; }
-article > footer::before { content: "-30-"; display: block; text-align: center; letter-spacing: .3em; margin-bottom: 2rem; color: var(--mute); }
+article > footer::before { content: "■"; display: block; text-align: center; margin-bottom: 2rem; color: var(--mute); }
 ul, ol { padding-left: 4ch; }
 ul { list-style-type: "* "; } ul ul { list-style-type: "- "; }
 ol ol { list-style-type: lower-alpha; } ol ol ol { list-style-type: lower-roman; }
