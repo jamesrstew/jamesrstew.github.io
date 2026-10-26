@@ -4,6 +4,8 @@ date: 2024-02-24
 description: Exploring AI applications in fintech: using ChatGPT and custom GPTs to generate personalized credit report insights.
 ---
 
+> **A note from 2026:** I wrote this in early 2024, when custom GPTs were new and pasting a credit report into ChatGPT felt cutting-edge. It's badly outdated now. I'm keeping it up as a historical record.
+
 ![AI-generated illustration](/img/ai-hero.webp)
 
 *AI's capabilities far exceed funny poems and [AI-generated Seinfeld episodes](https://www.theverge.com/23581186/ai-seinfeld-twitch-stream-chatgpt).*
