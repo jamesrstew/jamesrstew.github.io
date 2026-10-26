@@ -1,0 +1,55 @@
+{
+  "name": "James R. Stewart",
+  "alternateName": "James Stewart",
+  "role": "Builder",
+  "jobTitle": "Founder & Product Manager",
+  "url": "https://jamesstew.art",
+  "image": "https://jamesstew.art/img/social.webp",
+  "location": { "former": "San Francisco, CA", "current": "Remote, USA" },
+  "email": "jamesrstew@gmail.com",
+  "phone": "(520) 247-8382",
+  "calendar": "https://calendar.app.google/ap8mJ3wViFxXCT2E8",
+  "analytics": "G-TMJZV3TRXS",
+
+  "summary": "James R. Stewart is a builder: a founder and product manager who has spent his career building financial products at the edge of finance and new technology. He is the founder of Belief Systems, the measurement layer for prediction markets, and a crypto product manager at SoFi. He previously built products at Eigen Labs, StellarFi, Genesis, and BlackRock.",
+  "disambiguation": "Not to be confused with the actor James Stewart (1908–1997) or other people named James Stewart.",
+
+  "experience": [
+    { "org": "Belief Systems", "url": "https://beliefsystems.xyz", "title": "Founder", "from": "2025", "founder": true, "note": "The measurement layer for prediction markets: independent benchmarks, forward volatility, and market grades." },
+    { "org": "SoFi", "url": "https://www.sofi.com", "title": "Crypto Product Manager", "from": "2025", "note": "Leads crypto lending, earn, and transfers." },
+    { "org": "Eigen Labs", "title": "Senior Product Manager", "from": "2024", "to": "2025", "note": "Led staking and developer experience." },
+    { "org": "StellarFi", "url": "https://stellarfi.com", "title": "Director of Product Management", "from": "2023", "to": "2024", "note": "Early product hire; led a major B2B2C pivot." },
+    { "org": "Genesis", "title": "Lead Product Manager", "from": "2021", "to": "2023", "note": "Helped scale Genesis into the largest crypto lender of all time, with $131 billion in loan originations." },
+    { "org": "BlackRock", "url": "https://www.blackrock.com", "title": "Product Analyst, then Product Manager on Aladdin", "from": "2016", "to": "2021", "note": "Built a 0-to-1 bond trading tool for institutional investors and re-architected Mortgage Browser." },
+    { "org": "Cairn Media", "title": "Co-Founder", "from": "2015", "to": "2016", "founder": true, "note": "Built white-label mobile apps for zoos and museums, launching with the Reid Park Zoo in Tucson." }
+  ],
+
+  "building": [
+    { "name": "Belief Systems", "url": "https://beliefsystems.xyz", "blurb": "The measurement layer for prediction markets." }
+  ],
+
+  "projects": [
+    { "name": "Toastery Roastery", "url": "https://toasteryroastery.com", "blurb": "Micro-roasted coffee, made to order. The anti-coffee-subscription subscription." },
+    { "name": "Birthday Bread", "url": "https://birthdaybread.com", "blurb": "Text \"bread\" and a loaf shows up for someone you love. I keep no profit." },
+    { "name": "James St. Journal", "url": "https://www.jamesstjournal.com/", "blurb": "A daily paper written and edited by Claude. It ran for 147 editions." },
+    { "name": "Splitluride", "url": "https://jamesstew.art/telluride-splitwise/", "blurb": "Expense splitting for a ski trip. Shred now, settle later." },
+    { "name": "Mock Interview Machine", "url": "https://jamesstew.art/mock-interview-machine/", "blurb": "Practice PM interview questions." },
+    { "name": "Cumulus", "url": "https://cumulusbreathing.com", "blurb": "A breathwork app." }
+  ],
+
+  "research": [
+    { "title": "Benchmark Indices of Market-Implied Event Probabilities: Construction, Valuation, and Governance of the Belief Index Family", "short": "Belief indices", "url": "https://ssrn.com/abstract=7089198", "date": "2026-07", "publisher": "SSRN" },
+    { "title": "Forward Belief Volatility in Prediction Markets: A Budget-Anchored Term Structure", "short": "Belief volatility", "url": "https://ssrn.com/abstract=7220678", "date": "2026-08", "publisher": "SSRN" }
+  ],
+
+  "press": [
+    { "title": "Garage upstart turns Polymarket bets into benchmarks", "url": "https://www.risk.net/markets/7963857/garage-upstart-turns-polymarket-bets-into-benchmarks", "date": "2026-07-17", "publisher": "Risk.net", "about": "Belief Systems" }
+  ],
+
+  "elsewhere": [
+    { "name": "LinkedIn", "url": "https://www.linkedin.com/in/james-r-stewart/" },
+    { "name": "GitHub", "url": "https://github.com/jamesrstew" }
+  ],
+
+  "knowsAbout": ["Product management", "Fintech", "Crypto", "Prediction markets", "Consumer credit", "Fixed income trading"]
+}

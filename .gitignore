@@ -1,0 +1,5 @@
+# Build output (GitHub Actions builds this on every push)
+_site/
+
+.DS_Store
+.claude/settings.local.json
