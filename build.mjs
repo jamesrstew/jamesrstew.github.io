@@ -18,7 +18,7 @@ import { Marked } from './vendor/marked.esm.js';
 const ROOT = path.dirname(new URL(import.meta.url).pathname);
 const OUT = path.join(ROOT, '_site');
 const CONTENT = path.join(ROOT, 'content');
-const STATIC = ['img', 'video', 'favicon.png', 'CNAME', 'robots.txt', 'style.css'];
+const STATIC = ['img', 'video', 'favicon.svg', 'favicon.png', 'favicon.ico', 'apple-touch-icon.png', 'CNAME', 'robots.txt', 'style.css'];
 
 // URLs from earlier versions of the site. Each one gets a redirect page so old links keep working.
 const LEGACY = {
@@ -202,7 +202,9 @@ function layout(site, page) {
 <meta name="description" content="${esc(page.description)}">
 <meta name="author" content="${esc(site.name)}">
 ${page.path === '/404.html' ? '<meta name="robots" content="noindex">' : `<link rel="canonical" href="${url}">`}
-<link rel="icon" href="/favicon.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="stylesheet" href="/style.css">
 <link rel="alternate" type="application/atom+xml" title="${esc(site.name)}: Notes" href="/feed.xml">
 ${page.markdown ? `<link rel="alternate" type="text/markdown" href="${page.markdown}">\n` : ''}<meta property="og:site_name" content="${esc(site.name)}">
