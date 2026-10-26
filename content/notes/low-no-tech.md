@@ -35,7 +35,7 @@ Turn it over, and it starts again. No batteries, no software, no patch notes. Ju
 
 The Cloaca Maxima in ancient Rome was one of the first great public sewers. Built in the 6th century BC, it was so durable that parts of it still function today. Imagine: stone tunnels carrying waste out of the city for over two thousand years.
 
-![Ancient Roman aqueduct system](/img/aqueducts.png)
+![Ancient Roman aqueduct system](/img/aqueducts.jpg)
 
 *Roman Aqueducts → Sprawling Urban Cities*
 
@@ -49,7 +49,7 @@ In Amsterdam, there are more bicycles than people - about ~900,000 bikes for abo
 
 The unlock was personal freedom. Before bicycles, if you couldn’t afford a horse, you walked. Journeys of a few miles were long ordeals. The “safety bicycle” of the 1880s - two equal-sized wheels and a chain changed that. Suddenly anyone could travel 5 or 10x faster than walking, powered only by their own legs. Susan B. Anthony called it the “freedom machine” because it gave women independence in a way nothing else had.
 
-![Bicycle parking in Amsterdam showing hundreds of bikes](/img/amsterdam.png)
+![Bicycle parking in Amsterdam showing hundreds of bikes](/img/amsterdam.jpg)
 
 *Wheels + Leverage → Women's Suffrage*
 
