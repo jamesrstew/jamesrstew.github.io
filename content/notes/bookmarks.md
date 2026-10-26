@@ -2,7 +2,6 @@
 title: Bookmarks
 date: 2026-10-26
 description: Influential works I've bookmarked and come back to often.
-draft: true
 ---
 
 Influential works I've bookmarked and come back to often.
