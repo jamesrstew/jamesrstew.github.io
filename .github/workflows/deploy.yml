@@ -1,5 +1,6 @@
 # Builds the site with `node build.mjs` and publishes _site/ to GitHub Pages.
 # Runs on every push to master. A broken essay fails the build and the live site stays as it was.
+# The runner's preinstalled Google Chrome renders the social cards (_site/og/*.png); without it the build still passes.
 name: Deploy
 
 on:

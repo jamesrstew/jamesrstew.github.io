@@ -8,8 +8,11 @@
 // copy of marked v18.0.14, MIT). There is nothing to install and nothing to upgrade.
 
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import http from 'node:http';
+import crypto from 'node:crypto';
+import { spawn } from 'node:child_process';
 import { Marked } from './vendor/marked.esm.js';
 
 const ROOT = path.dirname(new URL(import.meta.url).pathname);
@@ -182,6 +185,8 @@ function person(site) {
 
 function layout(site, page) {
   const url = `${site.url}${page.path}`;
+  const image = page.card?.url || site.image;
+  const imageAlt = page.card?.alt || site.name;
   const title = page.path === '/' ? `${site.name} | ${site.role}` : `${page.title} | ${site.name}`;
   const header = page.path === '/' ? '' : `
 <header class="site">
@@ -205,14 +210,16 @@ ${page.markdown ? `<link rel="alternate" type="text/markdown" href="${page.markd
 <meta property="og:description" content="${esc(page.description)}">
 <meta property="og:url" content="${url}">
 <meta property="og:type" content="${page.ogType || 'website'}">
-<meta property="og:image" content="${site.image}">
+<meta property="og:image" content="${image}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="${esc(imageAlt)}">
 <meta property="og:locale" content="en_US">
 ${page.published ? `<meta property="article:published_time" content="${page.published}">\n<meta property="article:modified_time" content="${page.modified || page.published}">\n` : ''}<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(page.title)}">
 <meta name="twitter:description" content="${esc(page.description)}">
-<meta name="twitter:image" content="${site.image}">
+<meta name="twitter:image" content="${image}">
+<meta name="twitter:image:alt" content="${esc(imageAlt)}">
 <script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@graph': page.schema })}</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=${site.analytics}"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${site.analytics}');</script>
@@ -233,7 +240,7 @@ const noteList = (notes) => `<ul class="index">
 ${notes.map((n) => `  <li><time datetime="${n.date}">${n.date}</time> <a href="${n.url}">${esc(n.title)}</a></li>`).join('\n')}
 </ul>`;
 
-function homePage(site, notes, aboutHtml) {
+function homePage(site, notes, aboutHtml, card) {
   const recent = notes.slice(0, 5);
   const body = `<section class="card" aria-label="Contact">
   <h1>${esc(site.name)}</h1>
@@ -269,6 +276,7 @@ at least fails while daring greatly, so that his place shall never be with those
     path: '/',
     title: site.name,
     description: site.summary,
+    card,
     body,
     schema: [
       { '@type': 'ProfilePage', '@id': `${site.url}/`, url: `${site.url}/`, name: site.name, mainEntity: { '@id': `${site.url}/#person` } },
@@ -287,7 +295,7 @@ at least fails while daring greatly, so that his place shall never be with those
   });
 }
 
-function notesPage(site, notes) {
+function notesPage(site, notes, card) {
   const body = `<h1>Hello World</h1>
 <p>Notes on product management, technology, and personal obsessions.</p>
 ${noteList(notes)}`;
@@ -295,6 +303,7 @@ ${noteList(notes)}`;
     path: '/notes/',
     title: 'Notes',
     description: 'Notes on product management, technology, and personal obsessions.',
+    card,
     body,
     schema: [{
       '@type': 'Blog',
@@ -307,7 +316,7 @@ ${noteList(notes)}`;
   });
 }
 
-function notePage(site, note) {
+function notePage(site, note, card) {
   const dates = `<p class="meta">Published <time datetime="${note.date}">${longDate(note.date)}</time>${
     note.updated ? ` · Updated <time datetime="${note.updated}">${longDate(note.updated)}</time>` : ''}</p>`;
   const original = note.originally
@@ -330,6 +339,7 @@ ${original}<p><a href="/notes/">← All notes</a></p>
     published: note.date,
     modified: note.updated,
     markdown: `${note.url}index.md`,
+    card,
     body,
     schema: [{
       '@type': 'BlogPosting',
@@ -341,7 +351,7 @@ ${original}<p><a href="/notes/">← All notes</a></p>
       datePublished: note.date,
       dateModified: note.updated || note.date,
       wordCount: note.words,
-      image: note.image ? `${site.url}${note.image}` : site.image,
+      image: card?.url || (note.image ? `${site.url}${note.image}` : site.image),
       author: { '@id': `${site.url}/#person` },
       publisher: { '@id': `${site.url}/#person` },
       isPartOf: { '@id': `${site.url}/notes/` },
@@ -474,6 +484,189 @@ ${urls.map(([u, d]) => `<url><loc>${site.url}${u}</loc><lastmod>${d}</lastmod></
 `;
 }
 
+// ---------------------------------------------------------------- social cards
+//
+// Each page gets its own 1200×630 preview image (Open Graph / Twitter card) at /og/<name>.png.
+// Cards are tiny HTML pages screenshotted by headless Chrome. This step is optional: with no
+// Chrome, or if a screenshot fails, that page falls back to site.image and the build carries on.
+
+const CARD_W = 1200;
+const CARD_H = 630;
+const CARD_CONCURRENCY = 4;
+const CARD_TIMEOUT = 15_000;
+const CARD_CACHE = path.join(os.tmpdir(), 'jamesstew-og-cache');
+
+function findChrome() {
+  const runnable = (p) => { try { fs.accessSync(p, fs.constants.X_OK); return fs.statSync(p).isFile(); } catch { return false; } };
+  if (process.env.CHROME_PATH && runnable(process.env.CHROME_PATH)) return process.env.CHROME_PATH;
+  const dirs = (process.env.PATH || '').split(path.delimiter).filter(Boolean);
+  for (const name of ['google-chrome', 'google-chrome-stable', 'chromium', 'chromium-browser']) {
+    for (const dir of dirs) if (runnable(path.join(dir, name))) return path.join(dir, name);
+  }
+  const mac = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
+  return runnable(mac) ? mac : null;
+}
+
+// The card markup. Tokens match style.css (light theme); fonts are local monospace only.
+function cardHtml(c) {
+  return `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: ${CARD_W}px; height: ${CARD_H}px; overflow: hidden; }
+  body {
+    background: #faf9f6; color: #111;
+    font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, "DejaVu Sans Mono", "Liberation Mono", Consolas, monospace;
+    font-variant-ligatures: none; -webkit-font-smoothing: antialiased;
+  }
+  .card {
+    position: absolute; left: 64px; top: 52px; right: ${64 + 16}px; bottom: ${52 + 16}px;
+    display: flex; flex-direction: column; padding: 0 60px 44px;
+    background: #fff; border: 2px solid #111; box-shadow: 16px 16px 0 #111;
+  }
+  .card.lifted { box-shadow: 4px 4px 0 #03045e, 8px 8px 0 #023e8a, 12px 12px 0 #0077b6, 16px 16px 0 #0096c7, 20px 20px 0 #00b4d8; }
+  .head {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 32px;
+    margin: 0 -60px; padding: 38px 60px 24px; border-bottom: 3px solid #e0414f;
+    font-size: 26px; letter-spacing: .2em; text-transform: uppercase; color: #66665f; white-space: nowrap;
+  }
+  .head b { color: #111; }
+  .main { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
+  .title {
+    font-size: 96px; line-height: 1.08; letter-spacing: -.04em; font-weight: 700;
+    text-wrap: balance; overflow-wrap: normal; hyphens: none;
+  }
+  .sub { margin-top: 28px; font-size: 32px; line-height: 1.4; color: #111; text-wrap: pretty; }
+  .home .main { padding-top: 12px; }
+  .home .main { overflow: visible; }
+  .home .title { margin: 0 -60px; padding: 0 60px 28px; border-bottom: 3px solid #e0414f; }
+  .role { margin-top: 30px; font-size: 34px; letter-spacing: .3em; text-transform: uppercase; }
+  .foot { display: flex; justify-content: space-between; align-items: center; font-size: 28px; white-space: nowrap; }
+  .foot .url { color: #cc3700; text-decoration: underline 2px; text-underline-offset: .22em; }
+  .stack { display: flex; gap: 6px; }
+  .stack i { width: 16px; height: 16px; }
+</style>
+</head>
+<body>
+<div class="card${c.home ? ' home lifted' : ''}">
+  ${c.kicker ? `<div class="head"><b>${esc(c.kicker)}</b><span>${esc(c.aside || '')}</span></div>` : ''}
+  <div class="main"><div class="title">${esc(c.title)}</div>${c.role ? `<div class="role">${esc(c.role)}</div>` : ''}${c.sub ? `<div class="sub">${esc(c.sub)}</div>` : ''}</div>
+  <div class="foot"><span>${c.byline ? `${esc(c.byline)} · ` : ''}<span class="url">jamesstew.art</span></span>
+    <span class="stack" aria-hidden="true"><i style="background:#03045e"></i><i style="background:#023e8a"></i><i style="background:#0077b6"></i><i style="background:#0096c7"></i><i style="background:#00b4d8"></i></span></div>
+</div>
+<script>
+  // Shrink the title until the whole card fits: no clipped lines, no word wider than the card.
+  const main = document.querySelector('.main'), title = document.querySelector('.title');
+  for (let size = parseFloat(getComputedStyle(title).fontSize); size > 36; size -= 2) {
+    if (main.scrollHeight <= main.clientHeight && title.scrollWidth <= title.clientWidth) break;
+    title.style.fontSize = size - 2 + 'px';
+  }
+</script>
+</body>
+</html>
+`;
+}
+
+function cardSpecs(site, notes) {
+  const tagline = 'Notes on product management, technology, and personal obsessions.';
+  return [
+    { name: 'home', alt: `${site.name}, ${site.role}. jamesstew.art`, home: true, title: site.name, role: site.role },
+    { name: 'notes', alt: `Notes by ${site.name}: ${tagline}`,
+      kicker: site.name, aside: `${notes.length} essays`, title: 'Notes', sub: tagline },
+    ...notes.map((n) => ({
+      name: n.slug, alt: `${n.title}, by ${site.name}. jamesstew.art`,
+      kicker: 'Notes', aside: longDate(n.date), title: n.title, byline: site.name,
+    })),
+  ];
+}
+
+// A complete PNG: right signature, ends with the IEND chunk.
+function isPng(file) {
+  try {
+    const b = fs.readFileSync(file);
+    return b.length > 64 && b.readUInt32BE(0) === 0x89504e47 && b.toString('latin1', b.length - 8, b.length - 4) === 'IEND';
+  } catch { return false; }
+}
+
+function screenshot(chrome, html, out) {
+  return new Promise((resolve) => {
+    let dir, child, timer, done = false;
+    // Judge by the file, not the exit code: Chrome occasionally writes the screenshot and then hangs.
+    const finish = () => {
+      if (done) return;
+      done = true;
+      clearTimeout(timer);
+      let ok = false;
+      try {
+        const shot = path.join(dir, 'card.png');
+        if (isPng(shot)) { fs.renameSync(shot, out); ok = true; }
+        fs.rmSync(dir, { recursive: true, force: true, maxRetries: 3 });
+      } catch { /* a leftover temp dir is harmless */ }
+      resolve(ok);
+    };
+    try {
+      dir = fs.mkdtempSync(path.join(os.tmpdir(), 'jamesstew-og-'));
+      const page = path.join(dir, 'card.html');
+      fs.writeFileSync(page, html);
+      child = spawn(chrome, [
+        '--headless', '--disable-gpu', '--hide-scrollbars', '--no-first-run', '--no-default-browser-check',
+        '--disable-extensions', '--mute-audio', '--force-device-scale-factor=1', `--window-size=${CARD_W},${CARD_H}`,
+        `--user-data-dir=${path.join(dir, 'profile')}`, `--screenshot=${path.join(dir, 'card.png')}`,
+        // GitHub's Ubuntu runners block Chrome's user-namespace sandbox; the page is our own static HTML.
+        ...(process.platform === 'linux' ? ['--no-sandbox'] : []),
+        `file://${page}`,
+      ], { stdio: 'ignore' });
+    } catch { finish(); return; }
+    timer = setTimeout(() => { child.kill('SIGKILL'); finish(); }, CARD_TIMEOUT);
+    child.on('error', finish);
+    child.on('close', finish);
+  });
+}
+
+// Renders every card into _site/og/ and returns { name: { url, alt } } for the ones that exist.
+// Results are cached by the card's HTML, so `serve` rebuilds don't relaunch Chrome.
+async function renderCards(site, notes) {
+  const specs = cardSpecs(site, notes);
+  const made = {};
+  const failed = [];
+  const chrome = findChrome();
+  if (!chrome) {
+    console.warn(`Warning: Chrome not found (set CHROME_PATH), so every page uses the default social image ${site.image}`);
+    return made;
+  }
+  fs.mkdirSync(path.join(OUT, 'og'), { recursive: true });
+  fs.mkdirSync(CARD_CACHE, { recursive: true });
+  const queue = [...specs];
+  const worker = async () => {
+    for (let spec; (spec = queue.shift());) {
+      const html = cardHtml(spec);
+      const cached = path.join(CARD_CACHE, `${crypto.createHash('sha256').update(html).digest('hex').slice(0, 24)}.png`);
+      const out = path.join(OUT, 'og', `${spec.name}.png`);
+      const ok = isPng(cached) || await screenshot(chrome, html, cached) || await screenshot(chrome, html, cached);
+      if (ok) {
+        fs.copyFileSync(cached, out);
+        made[spec.name] = { url: `${site.url}/og/${spec.name}.png`, alt: spec.alt };
+      } else {
+        failed.push(spec.name);
+      }
+    }
+  };
+  await Promise.all(Array.from({ length: CARD_CONCURRENCY }, worker));
+  if (!fs.readdirSync(path.join(OUT, 'og')).length) fs.rmdirSync(path.join(OUT, 'og'));
+  if (failed.length) {
+    console.warn(`Warning: couldn't render ${failed.length} social card(s) (${failed.join(', ')}) with ${chrome}, so those pages use the default social image`);
+  }
+  return made;
+}
+
+// Never point a page at a card that isn't actually on disk.
+function cardFor(cards, name) {
+  const c = cards[name];
+  return c && fs.existsSync(path.join(OUT, 'og', `${name}.png`)) ? c : null;
+}
+
 // ---------------------------------------------------------------- build
 
 // Every root-relative link and image in the generated HTML must point at a real file.
@@ -492,7 +685,7 @@ function checkLinks() {
   if (missing.length) fail(`broken internal links:\n  ${missing.join('\n  ')}`);
 }
 
-function build() {
+async function build() {
   const started = Date.now();
   const site = JSON.parse(fs.readFileSync(path.join(CONTENT, 'site.json'), 'utf8'));
   const notes = loadNotes();
@@ -505,10 +698,14 @@ function build() {
   const clash = fs.readdirSync(OUT).filter((p) => RESERVED.includes(p));
   if (clash.length) fail(`${clash.join(', ')} would shadow a project site served from another repo`);
 
-  write('index.html', homePage(site, notes, about));
-  write('notes/index.html', notesPage(site, notes));
+  const cardsStarted = Date.now();
+  const cards = await renderCards(site, notes);
+  const cardsMs = Date.now() - cardsStarted;
+
+  write('index.html', homePage(site, notes, about, cardFor(cards, 'home')));
+  write('notes/index.html', notesPage(site, notes, cardFor(cards, 'notes')));
   for (const n of notes) {
-    write(`notes/${n.slug}/index.html`, notePage(site, n));
+    write(`notes/${n.slug}/index.html`, notePage(site, n, cardFor(cards, n.slug)));
     write(`notes/${n.slug}/index.md`, noteMarkdown(site, n));
   }
   write('404.html', notFoundPage(site));
@@ -519,7 +716,7 @@ function build() {
   write('llms-full.txt', llmsFullTxt(site, notes));
   checkLinks();
 
-  console.log(`Built ${notes.length} notes into _site/ in ${Date.now() - started}ms`);
+  console.log(`Built ${notes.length} notes and ${Object.keys(cards).length} social cards into _site/ in ${Date.now() - started}ms (cards: ${cardsMs}ms)`);
 }
 
 // ---------------------------------------------------------------- local preview
@@ -548,16 +745,17 @@ function serve(port = 8000) {
   }).listen(port, () => console.log(`Serving http://localhost:${port}`));
 
   let timer;
+  let rebuild = Promise.resolve();
   for (const p of ['content', 'style.css', 'img', 'video']) {
     fs.watch(path.join(ROOT, p), { recursive: true }, () => {
       clearTimeout(timer);
-      timer = setTimeout(() => { try { build(); } catch (e) { console.error(e.message); } }, 100);
+      timer = setTimeout(() => { rebuild = rebuild.then(build).catch((e) => console.error(e.message)); }, 100);
     });
   }
 }
 
 try {
-  build();
+  await build();
   if (process.argv[2] === 'serve') serve();
 } catch (e) {
   if (!(e instanceof BuildError)) throw e;
