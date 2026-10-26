@@ -33,7 +33,8 @@
     { "name": "Birthday Bread", "url": "https://birthdaybread.com", "blurb": "Text \"bread\" and a loaf shows up for someone you love. I keep no profit." },
     { "name": "James St. Journal", "url": "https://www.jamesstjournal.com/", "blurb": "A daily paper written and edited by Claude. It ran for 147 editions." },
     { "name": "Splitluride", "url": "https://jamesstew.art/telluride-splitwise/", "blurb": "Expense splitting for a ski trip. Shred now, settle later." },
-    { "name": "Cumulus", "url": "https://cumulusbreathing.com", "blurb": "A breathwork app." }
+    { "name": "Cumulus", "url": "https://cumulusbreathing.com", "blurb": "A breathwork app." },
+    { "name": "James Stewart Club", "url": "https://james-stewart.club", "blurb": "A club for people named James Stewart." }
   ],
 
   "research": [

@@ -4,4 +4,4 @@ Right now I'm building [Belief Systems](https://beliefsystems.xyz). Prediction m
 
 Before that I worked at Eigen Labs, StellarFi, and Genesis, which for a while was the largest crypto lender in the world. I started at BlackRock, where I spent five years on Aladdin and built a bond trading tool from scratch. My first company made phone apps for zoos.
 
-I [write](/notes/) about whatever I can't stop thinking about. Lately that's been eggs, electrolytes, and hourglasses. I have two kids, Dex and Reese.
+I [write](/notes/) about whatever I can't stop thinking about. Lately that's been eggs, electrolytes, and hourglasses. There are a lot of James Stewarts, so I started [a club for us](https://james-stewart.club). I have two kids, Dex and Reese.
