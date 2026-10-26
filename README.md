@@ -1,78 +1,47 @@
-# James Stewart's Personal Website
+# jamesstew.art
 
-A clean, minimal personal website and blog hosted on GitHub Pages.
+My personal website. It's plain HTML and CSS, built by one small script with no dependencies to install, so it should keep working for a long time without anyone touching it.
 
-## 🌐 Live Site
+## Publishing an essay
 
-Visit [jamesstew.art](https://jamesstew.art)
+1. Write it in Markdown and save it as `content/notes/your-essay-title.md`. The file name becomes the URL: `jamesstew.art/notes/your-essay-title/`.
+2. Put this at the top:
 
-## 📝 About
+   ```
+   ---
+   title: Your Essay Title
+   date: 2026-10-26
+   ---
+   ```
 
-This is the personal website of James Stewart, a Product Manager with expertise in fintech, technology, and product development. The site features:
+   Optional fields: `description` (the one-line summary for search and link previews; otherwise the first paragraph is used), `updated` (a later date, shown as "Updated …"), `originally` (a link to where it first ran, like LinkedIn), and `draft: true` (keeps it off the site).
+3. Commit and push to `master`. The site rebuilds and goes live in about a minute.
 
-- **Personal homepage** with professional introduction
-- **Blog/Notes section** with essays on product management, technology, and life
-- **Project links** to personal ventures:
-  - [Toastery Roastery](https://toasteryroastery.com/) - Coffee subscription service
-  - [Birthday Bread](http://birthdaybread.com) - Goodwill bread delivery project
-  - [James Stewart Club](http://james-stewart.club/) - Club for people named James Stewart
+No computer handy? On GitHub, open `content/notes/`, choose **Add file → Upload files**, drop the `.md` in, and commit.
 
-## 🛠️ Technical Details
+If something's wrong with the file (a missing title, a bad date, a broken image link), the build fails with a plain-English message and the live site stays as it was. The error is under the repo's **Actions** tab.
 
-- **Hosting**: GitHub Pages
-- **Framework**: Vanilla HTML/CSS/JS with Bootstrap 5
-- **Styling**: Custom CSS with responsive design
-- **URLs**: Clean URLs without `.html` extensions
-- **SEO**: Optimized with Open Graph, structured data, and proper meta tags
-- **Performance**: Optimized images, CDN resources, minimal dependencies
+## Everything else
 
-## 📁 Structure
+| What | Where |
+| --- | --- |
+| Homepage text | `content/about.md` |
+| Name, title, contact info, projects, research, press | `content/site.json` |
+| Design | `style.css` |
+| Images and videos | `img/`, `video/` (reference them as `/img/name.png`) |
+| Page templates and the build | `build.mjs` |
 
-```
-/
-├── index.html              # Homepage
-├── notes/                  # Blog/notes section
-│   ├── index.html         # Notes listing page
-│   ├── low-no-tech/       # Individual blog posts
-│   ├── new-dad/           # (directory/index.html structure)
-│   └── ...                # for clean URLs
-├── img/                   # Images and media
-├── styles.css             # Main site styles
-├── notes-styles.css       # Blog-specific styles
-├── 404.html              # Custom error page
-├── sitemap.xml           # SEO sitemap
-├── robots.txt            # Search engine directives
-└── llms.txt              # AI context file
-```
+To preview locally: `node build.mjs serve`, then open http://localhost:8000. It rebuilds whenever you save.
 
-## ⚡ Features
+## What the build makes
 
-- **Responsive design** that works on all devices
-- **Clean URLs** (`/notes/low-no-tech/` instead of `/notes/low-no-tech.html`)
-- **SEO optimized** with proper meta tags and structured data
-- **Fast loading** with optimized assets and CDN resources
-- **Accessible** with proper semantic HTML and alt text
-- **Custom 404 page** with coffee theme
-- **Social sharing** optimized for LinkedIn, Twitter, etc.
+Besides the pages, every build also writes:
+- `/feed.xml`, an Atom feed
+- `/sitemap.xml`
+- `/llms.txt` and `/llms-full.txt`, plain-text summaries for AI assistants
+- a Markdown copy of each essay at `/notes/<slug>/index.md`
+- redirects so old `.html` links keep working
 
-## 🚀 Development
+## Stack
 
-This is a static site built with vanilla HTML/CSS/JS. No build process required.
-
-### Local Development
-1. Clone the repository
-2. Serve locally with any static server (e.g., `python -m http.server`)
-3. Note: Clean URLs work on GitHub Pages but may not work locally
-
-### Deployment
-Changes are automatically deployed to GitHub Pages when pushed to the `master` branch.
-
-## 📄 License
-
-This is a personal website. Content and code are not intended for reuse.
-
-## 📧 Contact
-
-- Email: jamesrstew@gmail.com
-- LinkedIn: [james-r-stewart](https://www.linkedin.com/in/james-r-stewart/)
-- GitHub: [jamesrstew](https://github.com/jamesrstew)
+The pages are hand-written templates in `build.mjs`, rendered with [marked](https://github.com/markedjs/marked). Marked is vendored as a single file in `vendor/`, so there is no `package.json` and no `node_modules`. GitHub Actions runs `node build.mjs` and publishes the result to GitHub Pages.
