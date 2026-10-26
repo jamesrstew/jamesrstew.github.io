@@ -9,7 +9,7 @@ Influential works I've bookmarked and come back to often.
 
 ## Personal Renewal ([John W. Gardner](https://jamesclear.com/great-speeches/personal-renewal-by-john-w-gardner)) {#personal-renewal}
 
-Gardner gave this talk to a room of McKinsey consultants in 1990, when he was in his late seventies. It's about how people stop growing. Somewhere in the middle of their careers, they stop learning, get comfortable, and coast. His cure is to stay curious and keep taking risks, at any age. The line I will always remember: "Everyone wants to be interesting, but the vitalizing thing is to be interested."
+Gardner gave this talk to a room of McKinsey consultants in 1990, when he was in his late seventies. It's about how people stop growing. Somewhere in the middle of their careers, they stop learning, get comfortable, and coast. His cure is to stay curious and keep taking risks at any age. The line I will always remember: "Everyone wants to be interesting, but the vitalizing thing is to be interested."
 
 ## Taste ([Ira Glass](https://www.youtube.com/watch?v=91FQKciKfHI)) {#taste}
 
