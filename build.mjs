@@ -196,7 +196,7 @@ function layout(site, page) {
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(page.description)}">
 <meta name="author" content="${esc(site.name)}">
-<link rel="canonical" href="${url}">
+${page.path === '/404.html' ? '<meta name="robots" content="noindex">' : `<link rel="canonical" href="${url}">`}
 <link rel="icon" href="/favicon.png">
 <link rel="stylesheet" href="/style.css">
 <link rel="alternate" type="application/atom+xml" title="${esc(site.name)}: Notes" href="/feed.xml">
@@ -362,12 +362,12 @@ function notFoundPage(site) {
   });
 }
 
-const redirectPage = (to) => `<!doctype html>
+const redirectPage = (site, to) => `<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <title>Moved</title>
-<link rel="canonical" href="${to}">
+<link rel="canonical" href="${site.url}${to}">
 <meta http-equiv="refresh" content="0; url=${to}">
 <meta name="robots" content="noindex">
 </head>
@@ -512,7 +512,7 @@ function build() {
     write(`notes/${n.slug}/index.md`, noteMarkdown(site, n));
   }
   write('404.html', notFoundPage(site));
-  for (const [from, to] of Object.entries(LEGACY)) write(from, redirectPage(to));
+  for (const [from, to] of Object.entries(LEGACY)) write(from, redirectPage(site, to));
   write('feed.xml', feed(site, notes));
   write('sitemap.xml', sitemap(site, notes));
   write('llms.txt', llmsTxt(site, notes));

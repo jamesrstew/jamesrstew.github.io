@@ -25,7 +25,7 @@ Thoughts on launching new products. Here's a look at my product development proc
     1.  Resources I love for product discovery:
         1.  [*The Mom Test*](https://www.amazon.com/The-Mom-Test-Rob-Fitzpatrick-audiobook/dp/B07RJZKZ7F), Rob Fitzpatrick
 
-        2.  [*5 Whys*](https://www.productboard.com/glossary/five-whys/), Taiichi Ohno
+        2.  [*5 Whys*](https://web.archive.org/web/20240508200432/https://www.productboard.com/glossary/five-whys/), Taiichi Ohno
 
         3.  [*The Lean Startup*](https://www.amazon.com/Lean-Startup-Entrepreneurs-Continuous-Innovation/dp/0307887898)*,* Eric Reis
 
