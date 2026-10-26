@@ -16,7 +16,6 @@
     --hl: #123a5c; --stamp: #5aa9d6; --read: #d9875f; --sel: #0077b6; --sel-ink: #fff;
   }
   h1, h2 { text-shadow: .05em .04em 0 rgba(185, 195, 228, .18); }
-  .meta time { text-shadow: .06em .05em 0 rgba(0, 180, 216, .3); }
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -116,13 +115,6 @@ footer.site a:hover { color: var(--hover); }
 article > header { margin-bottom: 2.5rem; }
 article > header h1 { margin-bottom: .5rem; }
 .meta { color: var(--mute); font-size: .875rem; }
-/* The date, rubber-stamped */
-.meta time {
-  display: inline-block; padding: 0 .7ch; border: 1.5px solid; border-radius: 2px;
-  color: var(--stamp); font-size: .8125rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
-  transform: rotate(-1.5deg); line-height: 1.5;
-}
-.meta time + time { transform: rotate(1deg); }
 
 /* Following a #link: the heading gets highlighted on arrival */
 article :is(h2, h3)[id] { scroll-margin-top: 2rem; }
@@ -208,7 +200,6 @@ main > h1:first-child:has(+ p + p:last-child) {
   @page :first { @top-right { content: none; } }
   article { line-height: 2; }
   h1, h2 { text-shadow: none; }
-  .meta time { transform: none; color: #000; }
   h2, h3 { break-after: avoid; }
   p { orphans: 3; widows: 3; }
 }

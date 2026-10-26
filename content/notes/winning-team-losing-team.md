@@ -5,6 +5,8 @@ description: On moving between winning and losing companies, and why it's so har
 originally: https://www.linkedin.com/pulse/winning-team-losing-james-stewart-gnrlc/
 ---
 
+![Pen-and-ink drawing of a number 10 football jersey draped over a desk](/img/winning-team-losing-team.jpg)
+
 There is a type of football player who looks much better after being traded. Same arm. Same speed. Same brain. Different offensive line.
 
 Suddenly he has another second to throw. The receivers are open. The play calling looks smarter. He stops forcing passes because he doesn’t have to. The team wins, so the coaches trust him more. Because the coaches trust him more, he plays better. A year earlier everyone was debating whether he belonged in the league.
