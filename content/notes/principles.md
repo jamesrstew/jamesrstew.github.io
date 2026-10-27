@@ -43,6 +43,10 @@ The habits that make you good at one job often get in the way of the next. At st
 
 When Matthew McConaughey won his Oscar, he said his hero is himself, ten years from now. He picked that hero at fifteen. Every decade, the hero moves another ten years out. He'll never catch him, and that's the point. I like this better than most advice about role models. It turns an ordinary day into a question: is this setting up the person I want to be in ten years? Usually the answer is in small things. What I read. Who I spend time with. Whether I go for the run.
 
+### A genius is the one most like himself ([Thelonious Monk](https://improvisedlife.com/2012/03/05/thelonious-monks-notes-on-life-and-music/)) {#most-like-himself}
+
+Earlier in my career, I spent a lot of effort trying to seem smart. I worked on how I presented myself and how I framed my ideas, all to impress people. I had it backwards. What works is saying what I think, the way I'd naturally say it. When I stop performing and just sound like James, I do better. Ten times out of ten.
+
 ## How I live
 
 ### This is water ([David Foster Wallace](https://fs.blog/david-foster-wallace-this-is-water/)) {#this-is-water}
