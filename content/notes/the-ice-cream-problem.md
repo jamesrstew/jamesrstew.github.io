@@ -1,7 +1,7 @@
 ---
 title: The Ice Cream Problem
 date: 2026-11-06
-description: Why opinionated defaults make a powerful platform usable, from building DevKit at Eigen Labs.
+description: What looks like flexibility from inside a company can feel like unfinished work from outside it.
 ---
 
 When I worked at Eigen Labs, we had a powerful platform that people were having trouble using.
@@ -24,7 +24,7 @@ Some people would love this. They would experiment with the process and probably
 
 An ice cream shop makes a series of decisions on your behalf. It chooses ingredients, develops recipes, buys equipment, and works out how to serve the result. You still get to choose a flavor and add toppings. But your choices begin at a point where they’re useful to you.
 
-That was the idea behind DevKit, the developer tool I created for EigenLayer. We would choose sensible defaults, assemble the pieces, and give developers a practical way to get started.
+That was the idea behind [DevKit](https://github.com/Layr-Labs/devkit-cli), the developer tool I created for EigenLayer. We would choose sensible defaults, assemble the pieces, and give developers a practical way to get started.
 
 We would have opinions.
 
