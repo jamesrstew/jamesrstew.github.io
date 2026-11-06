@@ -1,7 +1,7 @@
 ---
 title: The Ice Cream Problem
 date: 2026-11-06
-description: What looks like flexibility from inside a company can feel like unfinished work from outside it.
+description: On opinionated defaults, and what I learned building DevKit at Eigen Labs.
 ---
 
 When I worked at Eigen Labs, we had a powerful platform that people were having trouble using.
